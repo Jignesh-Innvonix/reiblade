@@ -27,8 +27,8 @@ public class SponsorsPage {
 	LeftMenuModulesElements leftMenuModulesElements;
 	Common commonobj;
 
-	
-	
+
+
 	public SponsorsPage(WebDriver driver) {
 		this.driver = driver;
 		wait = new WebDriverWait(this.driver, 100);
@@ -43,23 +43,23 @@ public class SponsorsPage {
 		loginElement = PageFactory.initElements(this.driver, LoginElements.class);
 		leftMenuModulesElements = PageFactory.initElements(this.driver, LeftMenuModulesElements.class);
 	}
-	
+
 	public void insert_login_userName(String loginUserName) {
 		Common.pause(1);
 		commonobj.type(loginElement.login_userName,loginUserName);
 	}
-	
+
 	public void insert_login_password(String loginPassword) {
 		Common.pause(1);
 		loginElement.login_password.sendKeys(loginPassword);
 	}
-	
+
 	public void click_loginBtn() {
 		Common.pause(1);
 		loginElement.loginBtn.click();
 	}
-	
-	
+
+
 	public void clickOn_assets_leftmenu_location_city() {
 		Common.pause(1);
 		List<WebElement> asset_down_arrow = driver.findElements(By.xpath("//i[contains(.,'location_city')]/..//following-sibling::div/i[contains(@class,'rotate-180')]"));

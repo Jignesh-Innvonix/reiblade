@@ -1,5 +1,6 @@
 package com.reiblade.init;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -65,10 +66,47 @@ public class GenericFunctions {
 //		wait.until(ExpectedConditions.visibilityOf(webElement));
 		webElement.click();
 	}
-	
+
+
 	public static void jsClick(WebDriver driver, WebElement element) {
 		((JavascriptExecutor) driver).executeScript("return arguments[0].click();", element);
 		// this.waitForAjax("0");
+	}
+
+	public static void jsSendKey(WebDriver driver, WebElement element, String text) {
+
+		// WebElement el = driver.findElement(toByVal(element));
+//		    JavascriptExecutor ex = (JavascriptExecutor) driver;
+//		    ex.executeScript("arguments[0].value='"+ text +"';", element);
+//
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.getElementByXpath('some id').value='someValue';");
+	}
+
+	public static By toByVal(WebElement we) {
+		// By format = "[foundFrom] -> locator: term"
+		// see RemoteWebElement toString() implementation
+		String[] data = we.toString().split(" -> ")[1].replace("]", "").split(": ");
+		String locator = data[0];
+		String term = data[1];
+
+		switch (locator) {
+			case "xpath":
+				return By.xpath(term);
+			case "css selector":
+				return By.cssSelector(term);
+			case "id":
+				return By.id(term);
+			case "tag name":
+				return By.tagName(term);
+			case "name":
+				return By.name(term);
+			case "link text":
+				return By.linkText(term);
+			case "class name":
+				return By.className(term);
+		}
+		return (By) we;
 	}
 	
 	
