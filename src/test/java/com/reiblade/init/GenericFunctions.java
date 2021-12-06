@@ -8,6 +8,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import groovyjarjarantlr4.v4.codegen.model.Action;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
+import java.util.UUID;
+
 public class GenericFunctions {
 	
 	WebDriver driver;
@@ -30,7 +35,26 @@ public class GenericFunctions {
 			interruptedException.printStackTrace();
 		}
 	}
-	
+
+	public static int generateRandomNumber() {
+		Random rand = new Random();
+		int value = rand.nextInt(5000);
+		return value;
+	}
+
+	public static String generateRandomAlphaNumber() {
+		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+		;
+		return uuid;
+	}
+
+	public static void systemDateAndTime() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println(dtf.format(now));
+	}
+
+
 	public static void enterValueInto(WebElement webElement, String value)  {
 //		webElement.clear();
 		pause(2);
