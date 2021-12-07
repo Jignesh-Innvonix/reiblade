@@ -1,15 +1,13 @@
 package com.reiblade.init;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import groovyjarjarantlr4.v4.codegen.model.Action;
 import org.testng.Assert;
 
+import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -58,14 +56,21 @@ public class GenericFunctions {
 
 
 	public static void enterValueInto(WebElement webElement, String value)  {
-//		webElement.clear();
-		pause(2);
+		webElement.sendKeys(value);
+	}
+
+	public static void clearAndEnterValueInto(WebElement webElement, String value)  {
+		webElement.clear();
 		webElement.sendKeys(value);
 	}
 	
 	public static void clickOn(WebElement webElement) {
 //		wait.until(ExpectedConditions.visibilityOf(webElement));
 		webElement.click();
+	}
+
+	public static void sendKeys(WebElement webElement, Keys value)  {
+		webElement.sendKeys(value);
 	}
 
 
