@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import groovyjarjarantlr4.v4.codegen.model.Action;
+import org.testng.Assert;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -81,6 +82,16 @@ public class GenericFunctions {
 //
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.getElementByXpath('some id').value='someValue';");
+	}
+
+	public static void elementIsDisplayd(WebElement element) {
+		if(element.isDisplayed()) {
+			Assert.assertTrue(true);
+		}else {
+			System.out.println(element + "Element is not displayed");
+			Assert.assertTrue(false);
+
+		}
 	}
 
 	public static By toByVal(WebElement we) {

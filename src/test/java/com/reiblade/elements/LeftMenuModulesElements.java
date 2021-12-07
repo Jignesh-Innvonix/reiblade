@@ -33,8 +33,5 @@ public class LeftMenuModulesElements {
 	
 	@FindBy(xpath = "//div[text()='Accounts']")
 	public WebElement account_menu;
-
-	@FindBy(xpath = "//i[contains(.,'add')]")
-	public WebElement sponsors_add_button;
 	
 }

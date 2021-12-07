@@ -31,7 +31,7 @@ public class SponsorsTest {
 
 	public SponsorsTest() throws Exception {
 		String userDirectory = System.getProperty("user.dir");
-		url = new PropertiesFile(userDirectory + "//Data//url Configuration.properties" );
+		url = new PropertiesFile(userDirectory + "//Data//url Configuration.properties");
 
 	}
 
@@ -41,7 +41,7 @@ public class SponsorsTest {
 			driver = TestBase.init();
 			try {
 				driver.get(url.adminURL());
-			}catch(Exception e) {
+			} catch (Exception e) {
 				driver.get(url.adminURL());
 			}
 
@@ -53,18 +53,15 @@ public class SponsorsTest {
 
 			System.out.println("----Welcome to signIn");
 
-
-			GenericFunctions.enterValueInto(loginElement.login_userName,url.adminUserName());
-			GenericFunctions.enterValueInto(loginElement.login_password,url.adminPassword());
+			GenericFunctions.enterValueInto(loginElement.login_userName, url.adminUserName());
+			GenericFunctions.enterValueInto(loginElement.login_password, url.adminPassword());
 			GenericFunctions.clickOn(loginElement.loginBtn);
 
-
 		} catch (Exception e) {
-			Common.Screenshot(driver," Web signInTest - Fail ","BeforeMethod - initialization");
+			Common.Screenshot(driver, " Web signInTest - Fail ", "BeforeMethod - initialization");
 			System.out.println("----Need to check issue in - signInTest - BeforeMethod - initialization----");
 		}
 	}
-
 
 	@AfterMethod
 	public void endTestWork(ITestResult result) {
@@ -88,26 +85,59 @@ public class SponsorsTest {
 	}
 
 	@Test(priority = 1)
-	public void verify_add_asset_functionality() throws Exception {
+	public void verify_Validation_Message_functionality() throws Exception {
 		GenericFunctions.pause(5);
-		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);//navigation_menu_icon
+		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(sponsorsElements.sponsors_add_button);
 		GenericFunctions.pause(5);
-		//	GenericFunctions.clickOn(sponsorsElements.closeButton);
-
-//		GenericFunctions.jsClick(driver, sponsorsElements.first_Name_TextBox);
-//		GenericFunctions.enterValueInto(sponsorsElements.first_Name_TextBox, "Jignesh");
-		GenericFunctions.jsClick(driver, sponsorsElements.last_Name_TextBox);
+		GenericFunctions.jsClick(driver, sponsorsElements.save_Button);
 		GenericFunctions.pause(2);
+		GenericFunctions.elementIsDisplayd(sponsorsElements.alert_Text_Message);
+		GenericFunctions.clickOn(sponsorsElements.closed_Button);
+		GenericFunctions.elementIsDisplayd(sponsorsElements.validation_Msg_One);
+		GenericFunctions.elementIsDisplayd(sponsorsElements.validation_Msg_Two);
+		GenericFunctions.elementIsDisplayd(sponsorsElements.validation_Msg_Three);
+		GenericFunctions.clickOn(sponsorsElements.close_Button_Of_Box);
 
-		GenericFunctions.jsSendKey(driver,sponsorsElements.last_Name_TextBox, "Shah");
-//		GenericFunctions.pause(2);
+		System.out.println("----verify_Validation_Message_functionality Test Completed");
+	}
+
+	@Test(priority = 2)
+	public void verify_Add_Sponsor_functionality() throws Exception {
+		GenericFunctions.pause(5);
+		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(sponsorsElements.sponsors_add_button);
+		GenericFunctions.pause(5);
+		GenericFunctions.enterValueInto(sponsorsElements.first_Name_TextBox, "Jignesh");
+		GenericFunctions.enterValueInto(sponsorsElements.last_Name_TextBox, "Shah");
 		GenericFunctions.enterValueInto(sponsorsElements.email_TextBox, "jignesh.shah@innvonix.com");
+		GenericFunctions.pause(1);
+		GenericFunctions.jsClick(driver, sponsorsElements.save_Button);
+		System.out.println("----verify_Add_Sponsor_functionality Test Completed");
+	}
+
+	@Test(priority = 3)
+	public void verify_Edit_Sponsor_functionality() throws Exception {
+		GenericFunctions.pause(5);
+		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
-		GenericFunctions.jsClick(driver,sponsorsElements.save_Button);
-		System.out.println("----Sponosors Test Completed");
+		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(sponsorsElements.edit_button);
+		GenericFunctions.pause(5);
+		GenericFunctions.enterValueInto(sponsorsElements.first_Name_TextBox, "edit");
+		GenericFunctions.pause(1);
+		GenericFunctions.jsClick(driver, sponsorsElements.save_Button);
+		System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
 	}
 }

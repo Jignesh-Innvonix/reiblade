@@ -22,4 +22,25 @@ public class SponsorsElements {
 
 	@FindBy(xpath = "//i[contains(.,'add')]")
 	public WebElement sponsors_add_button;
+
+	@FindBy(xpath = "//div[text()='Please resolve the errors shown.']")
+	public WebElement alert_Text_Message;
+
+	@FindBy(xpath = "//div[text()='Close ']")
+	public WebElement closed_Button;
+
+	@FindBy(xpath = "(//div[text()='Value is required'])[1]")
+	public WebElement validation_Msg_One;
+
+	@FindBy(xpath = "(//div[text()='Value is required'])[2]")
+	public WebElement validation_Msg_Two;
+
+	@FindBy(xpath = "(//div[text()='Value is required'])[3]")
+	public WebElement validation_Msg_Three;
+
+	@FindBy(xpath = "(//i[@class='material-icons q-icon' and text()='close'])[3]")
+	public WebElement close_Button_Of_Box;
+
+	@FindBy(xpath = "(//i[text()='edit'])[1]")
+	public WebElement edit_button;
 }
