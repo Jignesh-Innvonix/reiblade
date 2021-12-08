@@ -115,7 +115,9 @@ public class SponsorsTest {
 
 	@Test(priority = 2)
 	public void verify_Validation_Message_functionality() throws Exception {
-		GenericFunctions.pause(5);
+		GenericFunctions.pause(1);
+		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -150,9 +152,7 @@ public class SponsorsTest {
 		GenericFunctions.enterValueInto(sponsorsElements.email_TextBox, "jignesh.shah@innvonix.com");
 		GenericFunctions.pause(1);
 		GenericFunctions.jsClick(driver, sponsorsElements.save_Button);
-		GenericFunctions.pause(1);
-		GenericFunctions.clickOn(sponsorsElements.close_Button_Of_Box);
-		GenericFunctions.pause(3);
+		GenericFunctions.pause(6);
 		WebElement firstName = driver.findElement(By.xpath("(//div[text()='Jignesh'])[1]"));
 		GenericFunctions.elementIsDisplayd(firstName);
 		WebElement lastName = driver.findElement(By.xpath("(//div[text()='Shah'])[1]"));
@@ -168,28 +168,20 @@ public class SponsorsTest {
 		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
-		GenericFunctions.pause(2);
+		GenericFunctions.pause(3);
 		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(sponsorsElements.edit_button);
 		GenericFunctions.pause(5);
-		GenericFunctions.enterValueInto(sponsorsElements.first_Name_TextBox, "edit");
-		GenericFunctions.enterValueInto(sponsorsElements.first_Name_TextBox, "edit");
-		GenericFunctions.clearAndEnterValueInto(sponsorsElements.email_TextBox, "shah.j@innvonix.com");
+		GenericFunctions.clearAndEnterValueInto(sponsorsElements.job_title_textBox, "Admin");
 		GenericFunctions.jsClick(driver, sponsorsElements.save_Button);
-		GenericFunctions.pause(1);
-		GenericFunctions.clickOn(sponsorsElements.close_Button_Of_Box);
-		GenericFunctions.pause(3);
-		//WebElement firstName = driver.findElement(By.xpath("(//div[text()='Jignesh'])[1]"));
-		//GenericFunctions.elementIsDisplayd(firstName);
-		//WebElement lastName = driver.findElement(By.xpath("(//div[text()='Shah'])[1]"));
-		//GenericFunctions.elementIsDisplayd(lastName);
-		WebElement emailId = driver.findElement(By.xpath("(//div[text()='shah.j@innvonix.com'])[1]"));
+		GenericFunctions.pause(6);
+		WebElement emailId = driver.findElement(By.xpath("(//div[text()='Admin'])[1]"));
 		GenericFunctions.elementIsDisplayd(emailId);
 		System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
 	}
 
-	@Test(priority = 5)
+	//@Test(priority = 5)
 	public void verify_Delete_Sponsor_functionality() throws Exception {
 		GenericFunctions.pause(5);
 		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);

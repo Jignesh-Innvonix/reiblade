@@ -41,6 +41,9 @@ public class SponsorsElements {
 	@FindBy(xpath = "//input[contains(@aria-label,'Landline')]")
 	public WebElement landline_TextBox;
 
+	@FindBy(xpath = "//input[contains(@aria-label,'Job Title')]")
+	public WebElement job_title_textBox;
+
 	@FindBy(xpath = "//i[contains(.,'add')]")
 	public WebElement sponsors_add_button;
 
@@ -68,7 +71,7 @@ public class SponsorsElements {
 	@FindBy(xpath = "(//i[text()='edit'])[1]")
 	public WebElement edit_button;
 
-	@FindBy(xpath = "(//input[@type='checkbox'])[1]")
+	@FindBy(xpath = "(//input[@type='checkbox'])[2]")
 	public WebElement checkBox;
 
 	@FindBy(xpath = "//i[text()='more_vert']")

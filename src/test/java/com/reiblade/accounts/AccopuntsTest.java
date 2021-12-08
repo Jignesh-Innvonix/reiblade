@@ -87,7 +87,7 @@ public class AccopuntsTest {
         driver.quit();
     }
 
-   // @Test(priority = 1)
+   @Test(priority = 1)
     public void verify_Required_Filled_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
@@ -107,7 +107,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Required_Filled_functionality Test Completed");
     }
 
-   // @Test(priority = 2)
+   @Test(priority = 2)
     public void verify_Validation_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -129,7 +129,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Validation_Message_functionality Test Completed");
     }
 
-   // @Test(priority = 3)
+   @Test(priority = 3)
     public void verify_Add_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -153,15 +153,33 @@ public class AccopuntsTest {
         GenericFunctions.jsClick(driver, accountsElements.save_Button_Two);
         GenericFunctions.pause(1);
         GenericFunctions.jsClick(driver, accountsElements.save_Button);
-        GenericFunctions.pause(2);
-        GenericFunctions.clickOn(accountsElements.close_Button_Of_Box);
-        GenericFunctions.pause(2);
+        GenericFunctions.pause(6);
         WebElement accountName = driver.findElement(By.xpath("(//div[text()='Jignesh Company'])[1]"));
         GenericFunctions.elementIsDisplayd(accountName);
         System.out.println("----verify_Add_Message_functionality Test Completed");
     }
 
     @Test(priority = 4)
+    public void verify_Edit_Account_functionality() throws Exception {
+        GenericFunctions.pause(5);
+        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+        GenericFunctions.pause(2);
+        GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
+        GenericFunctions.pause(3);
+        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+        GenericFunctions.pause(2);
+        GenericFunctions.clickOn(accountsElements.edit_button);
+        GenericFunctions.pause(5);
+        GenericFunctions.clearAndEnterValueInto(accountsElements.monthly_max_doors_textBox, "10000");
+        GenericFunctions.jsClick(driver, accountsElements.save_Button);
+        GenericFunctions.pause(6);
+        WebElement emailId = driver.findElement(By.xpath("(//div[text()='10000'])[1]"));
+        GenericFunctions.elementIsDisplayd(emailId);
+        System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
+    }
+
+
+   // @Test(priority = 4)
     public void verify_Notification() throws Exception {
         GenericFunctions.pause(2);
        // driver.switchTo().window(tabs2.get(1));

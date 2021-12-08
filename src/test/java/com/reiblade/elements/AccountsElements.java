@@ -47,6 +47,9 @@ public class AccountsElements {
     @FindBy(xpath = "(//div[text()='Value is required'])[1]")
     public WebElement validation_Msg_One;
 
+    @FindBy(xpath = "(//i[text()='edit'])[1]")
+    public WebElement edit_button;
+
     @FindBy(id = "login")
     public WebElement search_emailaddress;
 
