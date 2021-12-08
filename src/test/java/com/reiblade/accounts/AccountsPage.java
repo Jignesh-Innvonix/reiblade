@@ -1,15 +1,15 @@
 package com.reiblade.accounts;
 
+import com.reiblade.elements.AccountsElements;
 import com.reiblade.elements.LeftMenuModulesElements;
 import com.reiblade.elements.LoginElements;
 import com.reiblade.init.Common;
 import com.reiblade.init.GenericFunctions;
 import com.reiblade.init.PropertiesFile;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
@@ -25,6 +25,7 @@ public class AccountsPage {
     SoftAssert softAssert;
     LoginElements loginElement;
     LeftMenuModulesElements leftMenuModulesElements;
+    AccountsElements accountsElements;
     Common commonobj;
 
 
@@ -41,6 +42,7 @@ public class AccountsPage {
         commonobj = new Common();
         loginElement = PageFactory.initElements(this.driver, LoginElements.class);
         leftMenuModulesElements = PageFactory.initElements(this.driver, LeftMenuModulesElements.class);
+        accountsElements = PageFactory.initElements(this.driver, AccountsElements.class);
     }
 
     public void insert_login_userName(String loginUserName) {
@@ -68,4 +70,63 @@ public class AccountsPage {
             GenericFunctions.clickOn(leftMenuModulesElements.asset_leftmenu_location_city);
         }
     }
+
+    public void waitTillElementIsVisible(int timeInSeconds, By element) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+        } catch (Exception e) {
+            throw new ElementNotVisibleException("element was not visible in " + timeInSeconds + " seconds");
+        }
+    }
+    public void searchEmail(String emailaddress) {
+        System.out.println("Search " + emailaddress + " in Mail");
+        Common.pause(5);
+
+        GenericFunctions.clearAndEnterValueInto(accountsElements.search_emailaddress, emailaddress);
+
+        Common.pause(2);
+        GenericFunctions.sendKeys(accountsElements.search_emailaddress,  Keys.ENTER);
+
+        // Switch to Mail List
+        By frame_mailist = By.id("ifinbox");
+        waitTillElementIsVisible(120, frame_mailist);
+        switchToMailList();
+
+        // Switch to Mail Messages
+      /*  By mail_from = By.xpath("//*[contains(text(),'" + from_emailaddress + "')]");
+        try {
+            waitTillElementIsVisible(120, mail_from);
+            clickOnElement(mail_from);
+        } catch (Exception e) {
+            log("Unable to Read Message from Yopmail due to catptcha Issue");
+            throw new ElementNotVisibleException("Unable to Read Message from Yopmail due to catptcha Issue");
+        }
+        commonWait(2000);
+        driver.switchTo().parentFrame();*/
+    }
+
+
+    public void switchToMailList() {
+        driver.switchTo().frame("ifinbox");// Id of frame 1(Subject)
+    }
+
+
+    public void switchToMailMessages() {
+        driver.switchTo().frame("ifmail"); // Id of frame 2(Messages)
+    }
+
+
+//    public void getPassword() {
+//        switchToMailMessages();
+//        Common.ONETIME_PASSWORD = getText(password);
+//        log(Common.ONETIME_PASSWORD, "is One Time Password");
+//    }
+//
+//
+//    public void verifyMailSubject(String expectedmsg) {
+//        commonWait(2000);
+//        switchToMailMessages();
+//        verifyText(mail_subject, expectedmsg, "Mail Subject Verification");
+//    }
 }

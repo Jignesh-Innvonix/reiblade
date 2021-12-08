@@ -21,9 +21,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class AccopuntsTest {
-    SponsorsPage sponsorsPage;
+    AccountsPage accountsPage;
     WebDriver driver;
     PropertiesFile url;
     LoginElements loginElement;
@@ -47,7 +48,7 @@ public class AccopuntsTest {
                 driver.get(url.adminURL());
             }
 
-            sponsorsPage = PageFactory.initElements(driver, SponsorsPage.class);
+            accountsPage = PageFactory.initElements(driver, AccountsPage.class);
             loginElement = PageFactory.initElements(this.driver, LoginElements.class);
             leftMenuModulesElements = PageFactory.initElements(this.driver, LeftMenuModulesElements.class);
             accountsElements = PageFactory.initElements(this.driver, AccountsElements.class);
@@ -86,7 +87,7 @@ public class AccopuntsTest {
         driver.quit();
     }
 
-    @Test(priority = 1)
+   // @Test(priority = 1)
     public void verify_Required_Filled_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
@@ -106,7 +107,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Required_Filled_functionality Test Completed");
     }
 
-    @Test(priority = 2)
+   // @Test(priority = 2)
     public void verify_Validation_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -128,7 +129,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Validation_Message_functionality Test Completed");
     }
 
-    @Test(priority = 2)
+   // @Test(priority = 3)
     public void verify_Add_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -160,4 +161,16 @@ public class AccopuntsTest {
         System.out.println("----verify_Add_Message_functionality Test Completed");
     }
 
+    @Test(priority = 4)
+    public void verify_Notification() throws Exception {
+        GenericFunctions.pause(2);
+       // driver.switchTo().window(tabs2.get(1));
+        driver.get("https://yopmail.com/en/");
+        GenericFunctions.pause(5);
+        accountsPage.searchEmail("jigneshyopmail123@yopmail.com");
+        GenericFunctions.pause(2);
+        GenericFunctions.clickOn(accountsElements.new_Account_email_Id);
+        GenericFunctions.pause(1);
+        GenericFunctions.jsClick(driver,accountsElements.click_here_text);
+    }
 }

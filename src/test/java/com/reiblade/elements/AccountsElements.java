@@ -47,4 +47,25 @@ public class AccountsElements {
     @FindBy(xpath = "(//div[text()='Value is required'])[1]")
     public WebElement validation_Msg_One;
 
+    @FindBy(id = "login")
+    public WebElement search_emailaddress;
+
+    @FindBy(xpath = "//*[@type ='submit']")
+    public WebElement btn_search;
+
+    @FindBy(xpath = "//a[text() =' Click HERE']")
+    public WebElement click_here_text;
+
+    @FindBy(xpath = "(//div[text() ='Set Password For New Account Link'])[1]")
+    public WebElement new_Account_email_Id ;
+
+   /* @FindBy(xpath = "//*[@type ='submit']")
+    public WebElement btn_search;
+
+    By search_emailaddress = By.id("login");
+    By btn_search = By.xpath("//*[@type ='submit']");
+    By password = By.xpath("//p[contains(text(),'Password:')]/strong");;
+    By mail_to_name = By.xpath("//p[contains(text(),'Dear')]/strong");
+    By mail_subject = By.xpath("//div[@id='mailhaut']/div[1]");
+    By successmsg = By.xpath("//div[contains(text(),'Successful Sign Up!!! on BridgeVoice Online Platform')]");*/
 }
