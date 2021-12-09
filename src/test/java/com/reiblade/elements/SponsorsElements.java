@@ -71,7 +71,7 @@ public class SponsorsElements {
 	@FindBy(xpath = "(//i[text()='edit'])[1]")
 	public WebElement edit_button;
 
-	@FindBy(xpath = "(//input[@type='checkbox'])[2]")
+	@FindBy(xpath = "//td[contains(@class,'q-table')]/div[1]/div/div")
 	public WebElement checkBox;
 
 	@FindBy(xpath = "//i[text()='more_vert']")
@@ -82,7 +82,7 @@ public class SponsorsElements {
 
 	@FindBy(xpath = "//div[text()='Delete Confirmation!']")
 	public WebElement delete_Confirmation_Alert;
-	//div[text()='Delete Confirmation!']
+	
 	@FindBy(xpath = "//div[text()='Delete ']")
 	public WebElement delete_Button_On_Alert;
 

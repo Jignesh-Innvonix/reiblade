@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -52,8 +53,6 @@ public class SponsorsTest {
 			sponsorsElements = PageFactory.initElements(this.driver, SponsorsElements.class);
 			dashboardElements = PageFactory.initElements(this.driver, DashboardElements.class);
 
-			System.out.println("----Welcome to signIn");
-
 			GenericFunctions.enterValueInto(loginElement.login_userName, url.adminUserName());
 			GenericFunctions.enterValueInto(loginElement.login_password, url.adminPassword());
 			GenericFunctions.clickOn(loginElement.loginBtn);
@@ -63,10 +62,16 @@ public class SponsorsTest {
 			System.out.println("----Need to check issue in - signInTest - BeforeMethod - initialization----");
 		}
 	}
+	
+	@BeforeMethod
+	public void beforeEachMehod() throws Exception {
+		driver.get(url.adminURL());
+		GenericFunctions.pause(5);
+	}
 
 	@AfterMethod
 	public void endTestWork(ITestResult result) {
-
+		
 		if (ITestResult.FAILURE == result.getStatus()) {
 			String testname = "Fail";
 			Common.Screenshot(driver, testname, " Fail " + result.getMethod().getMethodName());
@@ -86,8 +91,7 @@ public class SponsorsTest {
 	}
 
 	@Test(priority = 1)
-	public void verify_Required_Filled_functionality() throws Exception {
-		GenericFunctions.pause(5);
+	public void verify_available_fields_on_sponsor_page() throws Exception {
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -114,9 +118,8 @@ public class SponsorsTest {
 	}
 
 	@Test(priority = 2)
-	public void verify_Validation_Message_functionality() throws Exception {
-		GenericFunctions.pause(1);
-		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+	public void verify_required_fields_validation_on_sponsor_page() throws Exception {
+//		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(2);
@@ -137,9 +140,8 @@ public class SponsorsTest {
 	}
 
 	@Test(priority = 3)
-	public void verify_Add_Sponsor_functionality() throws Exception {
-		GenericFunctions.pause(5);
-		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+	public void verify_add_sponsor_functionality() throws Exception {
+//		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(2);
@@ -163,9 +165,8 @@ public class SponsorsTest {
 	}
 
 	@Test(priority = 4)
-	public void verify_Edit_Sponsor_functionality() throws Exception {
-		GenericFunctions.pause(5);
-		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+	public void verify_edit_eponsor_functionality() throws Exception {
+//		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(3);
@@ -175,16 +176,15 @@ public class SponsorsTest {
 		GenericFunctions.pause(5);
 		GenericFunctions.clearAndEnterValueInto(sponsorsElements.job_title_textBox, "Admin");
 		GenericFunctions.jsClick(driver, sponsorsElements.save_Button);
-		GenericFunctions.pause(6);
-		WebElement emailId = driver.findElement(By.xpath("(//div[text()='Admin'])[1]"));
-		GenericFunctions.elementIsDisplayd(emailId);
+		GenericFunctions.pause(10);
+		WebElement jobTitle = driver.findElement(By.xpath("(//td//div[contains(.,'Admin')])[1]"));
+		GenericFunctions.elementIsDisplayd(jobTitle);
 		System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
 	}
 
-	//@Test(priority = 5)
-	public void verify_Delete_Sponsor_functionality() throws Exception {
-		GenericFunctions.pause(5);
-		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+	@Test(priority = 5)
+	public void verify_delete_sponsor_functionality() throws Exception {
+//		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
 		GenericFunctions.pause(2);
 		GenericFunctions.clickOn(leftMenuModulesElements.sponsors_menu);
 		GenericFunctions.pause(2);
@@ -200,6 +200,5 @@ public class SponsorsTest {
 		GenericFunctions.pause(1);
 		GenericFunctions.clickOn(sponsorsElements.delete_Button_On_Alert);
 		GenericFunctions.pause(1);
-		System.out.println("----verify_Delete_Sponsor_functionality Test Completed");
 	}
 }

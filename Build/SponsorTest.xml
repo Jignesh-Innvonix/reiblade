@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SponsorTest">
+    <test  name="Sponsor : Crud Operation" verbose="1">
+        <classes>
+            <class name="com.reiblade.sponsors.SponsorsTest">
+                <methods>
+                    <include name="verify_available_fields_on_sponsor_page"></include>
+                    <include name="verify_required_fields_validation_on_sponsor_page"></include>
+                    <include name="verify_add_sponsor_functionality"></include>
+                    <include name="verify_edit_eponsor_functionality"></include>
+                    <include name="verify_delete_sponsor_functionality"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
