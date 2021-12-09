@@ -49,7 +49,7 @@ public class SponsorsTest {
 			newAssetPopupElements = PageFactory.initElements(this.driver, NewAssetPopupElements.class);
 			dashboardElements = PageFactory.initElements(this.driver, DashboardElements.class);
 			
-			System.out.println("----Welcome to signIn");
+			System.out.println("----Welcome to signIn  test");
 //			assetPage.insert_login_userName(url.userName());
 //			assetPage.insert_login_password(url.password());
 //			assetPage.click_loginBtn();
