@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountsPage {
@@ -87,46 +88,22 @@ public class AccountsPage {
 
         Common.pause(2);
         GenericFunctions.sendKeys(accountsElements.search_emailaddress,  Keys.ENTER);
-
-        // Switch to Mail List
-        By frame_mailist = By.id("ifinbox");
-        waitTillElementIsVisible(120, frame_mailist);
-        switchToMailList();
-
-        // Switch to Mail Messages
-      /*  By mail_from = By.xpath("//*[contains(text(),'" + from_emailaddress + "')]");
-        try {
-            waitTillElementIsVisible(120, mail_from);
-            clickOnElement(mail_from);
-        } catch (Exception e) {
-            log("Unable to Read Message from Yopmail due to catptcha Issue");
-            throw new ElementNotVisibleException("Unable to Read Message from Yopmail due to catptcha Issue");
-        }
-        commonWait(2000);
-        driver.switchTo().parentFrame();*/
+        Common.pause(2);
+        driver.switchTo().frame("ifinbox");
+        Common.pause(2);
     }
 
-
-    public void switchToMailList() {
-        driver.switchTo().frame("ifinbox");// Id of frame 1(Subject)
+    public void clickOnClickHerePasswordLink() {
+        driver.switchTo().defaultContent();
+        driver.switchTo().frame("ifmail");
+        Common.pause(2);
+        GenericFunctions.clickOn(accountsElements.click_here_text);
     }
 
-
-    public void switchToMailMessages() {
-        driver.switchTo().frame("ifmail"); // Id of frame 2(Messages)
+    public void switchTab(){
+        ArrayList<String> newTb = new ArrayList<String>(driver.getWindowHandles());
+        //switch to new tab
+        driver.switchTo().window(newTb.get(1));
     }
 
-
-//    public void getPassword() {
-//        switchToMailMessages();
-//        Common.ONETIME_PASSWORD = getText(password);
-//        log(Common.ONETIME_PASSWORD, "is One Time Password");
-//    }
-//
-//
-//    public void verifyMailSubject(String expectedmsg) {
-//        commonWait(2000);
-//        switchToMailMessages();
-//        verifyText(mail_subject, expectedmsg, "Mail Subject Verification");
-//    }
 }

@@ -10,6 +10,7 @@ import com.reiblade.init.PropertiesFile;
 import com.reiblade.init.TestBase;
 import com.reiblade.sponsors.SponsorsPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -87,7 +90,7 @@ public class AccopuntsTest {
         driver.quit();
     }
 
-   @Test(priority = 1)
+  // @Test(priority = 1)
     public void verify_Required_Filled_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
@@ -107,7 +110,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Required_Filled_functionality Test Completed");
     }
 
-   @Test(priority = 2)
+   //@Test(priority = 2)
     public void verify_Validation_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -129,7 +132,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Validation_Message_functionality Test Completed");
     }
 
-   @Test(priority = 3)
+  // @Test(priority = 3)
     public void verify_Add_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -159,7 +162,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Add_Message_functionality Test Completed");
     }
 
-    @Test(priority = 4)
+    //@Test(priority = 4)
     public void verify_Edit_Account_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -178,17 +181,50 @@ public class AccopuntsTest {
         System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
     }
 
+    //@Test(priority = 5)
+    public void verify_Delete_Account_functionality() throws Exception {
+        GenericFunctions.pause(5);
+        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+        GenericFunctions.pause(2);
+        GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
+        GenericFunctions.pause(3);
+        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+        GenericFunctions.pause(2);
+        GenericFunctions.clickOn(accountsElements.checkBox);
+        GenericFunctions.pause(2);
+        GenericFunctions.clickOn(accountsElements.moreOption);
+        GenericFunctions.pause(1);
+        GenericFunctions.clickOn(accountsElements.delete_Button_From_More_Option);
+        GenericFunctions.pause(1);
+        GenericFunctions.clickOn(accountsElements.delete_Confirmation_Alert);
+        GenericFunctions.pause(1);
+        GenericFunctions.clickOn(accountsElements.delete_Button_On_Alert);
+        GenericFunctions.pause(1);
+        System.out.println("----verify_Delete_Sponsor_functionality Test Completed");
+    }
 
-   // @Test(priority = 4)
-    public void verify_Notification() throws Exception {
+
+   @Test(priority = 6)
+    public void verify_Notification_And_Reset_Password() throws Exception {
         GenericFunctions.pause(2);
        // driver.switchTo().window(tabs2.get(1));
         driver.get("https://yopmail.com/en/");
         GenericFunctions.pause(5);
         accountsPage.searchEmail("jigneshyopmail123@yopmail.com");
-        GenericFunctions.pause(2);
+        GenericFunctions.pause(3);
         GenericFunctions.clickOn(accountsElements.new_Account_email_Id);
-        GenericFunctions.pause(1);
-        GenericFunctions.jsClick(driver,accountsElements.click_here_text);
+       GenericFunctions.pause(2);
+       accountsPage.clickOnClickHerePasswordLink();
+       GenericFunctions.pause(5);
+       accountsPage.switchTab();
+       GenericFunctions.pause(5);
+       GenericFunctions.enterValueInto(accountsElements.enterNewPassword, "Jignesh");
+       GenericFunctions.pause(2);
+       GenericFunctions.enterValueInto(accountsElements.repeatNewPassword, "Jignesh");
+       GenericFunctions.pause(2);
+       GenericFunctions.clickOn(accountsElements.reset_Password_Button);
+       System.out.println("----verify_Delete_Sponsor_functionality Test Completed");
     }
+
+
 }

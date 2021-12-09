@@ -50,10 +50,25 @@ public class AccountsElements {
     @FindBy(xpath = "(//i[text()='edit'])[1]")
     public WebElement edit_button;
 
+    @FindBy(xpath = "(//input[@type='checkbox'])[2]")
+    public WebElement checkBox;
+
+    @FindBy(xpath = "//i[text()='more_vert']")
+    public WebElement moreOption;
+
+    @FindBy(xpath = "//div[text()='Delete']")
+    public WebElement delete_Button_From_More_Option;
+
+    @FindBy(xpath = "//div[text()='Delete Confirmation!']")
+    public WebElement delete_Confirmation_Alert;
+    //div[text()='Delete Confirmation!']
+    @FindBy(xpath = "//div[text()='Delete ']")
+    public WebElement delete_Button_On_Alert;
+
     @FindBy(id = "login")
     public WebElement search_emailaddress;
 
-    @FindBy(xpath = "//*[@type ='submit']")
+    @FindBy(xpath = "//a[@class='wmlogoclick']")
     public WebElement btn_search;
 
     @FindBy(xpath = "//a[text() =' Click HERE']")
@@ -62,13 +77,14 @@ public class AccountsElements {
     @FindBy(xpath = "(//div[text() ='Set Password For New Account Link'])[1]")
     public WebElement new_Account_email_Id ;
 
-   /* @FindBy(xpath = "//*[@type ='submit']")
-    public WebElement btn_search;
+    @FindBy(xpath = "//input[contains(@aria-label,'Enter New Password')]")
+    public WebElement enterNewPassword;
 
-    By search_emailaddress = By.id("login");
-    By btn_search = By.xpath("//*[@type ='submit']");
-    By password = By.xpath("//p[contains(text(),'Password:')]/strong");;
-    By mail_to_name = By.xpath("//p[contains(text(),'Dear')]/strong");
-    By mail_subject = By.xpath("//div[@id='mailhaut']/div[1]");
-    By successmsg = By.xpath("//div[contains(text(),'Successful Sign Up!!! on BridgeVoice Online Platform')]");*/
+    @FindBy(xpath = "//input[contains(@aria-label,'Repeat New Password')]")
+    public WebElement repeatNewPassword;
+
+    @FindBy(id = "resetpasswordbtn")
+    public WebElement reset_Password_Button;
+
+
 }
