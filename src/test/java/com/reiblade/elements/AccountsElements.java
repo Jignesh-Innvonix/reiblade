@@ -61,6 +61,21 @@ public class AccountsElements {
 
     @FindBy(xpath = "(//div[text() ='Set Password For New Account Link'])[1]")
     public WebElement new_Account_email_Id ;
+    
+	@FindBy(xpath = "//td[contains(@class,'q-table')]/div[1]/div/div")
+	public WebElement checkBox;
+
+	@FindBy(xpath = "//i[text()='more_vert']")
+	public WebElement moreOption;
+
+	@FindBy(xpath = "//div[text()='Delete']")
+	public WebElement delete_Button_From_More_Option;
+
+	@FindBy(xpath = "//div[text()='Delete Confirmation!']")
+	public WebElement delete_Confirmation_Alert;
+	
+	@FindBy(xpath = "//div[text()='Delete ']")
+	public WebElement delete_Button_On_Alert;
 
    /* @FindBy(xpath = "//*[@type ='submit']")
     public WebElement btn_search;
@@ -71,4 +86,6 @@ public class AccountsElements {
     By mail_to_name = By.xpath("//p[contains(text(),'Dear')]/strong");
     By mail_subject = By.xpath("//div[@id='mailhaut']/div[1]");
     By successmsg = By.xpath("//div[contains(text(),'Successful Sign Up!!! on BridgeVoice Online Platform')]");*/
+    
+    
 }

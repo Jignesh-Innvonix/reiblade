@@ -17,13 +17,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class AccopuntsTest {
+public class AccountsTest {
     AccountsPage accountsPage;
     WebDriver driver;
     PropertiesFile url;
@@ -32,7 +33,7 @@ public class AccopuntsTest {
     AccountsElements accountsElements;
     DashboardElements dashboardElements;
 
-    public AccopuntsTest() throws Exception {
+    public AccountsTest() throws Exception {
         String userDirectory = System.getProperty("user.dir");
         url = new PropertiesFile(userDirectory + "//Data//url Configuration.properties");
 
@@ -54,8 +55,6 @@ public class AccopuntsTest {
             accountsElements = PageFactory.initElements(this.driver, AccountsElements.class);
             dashboardElements = PageFactory.initElements(this.driver, DashboardElements.class);
 
-            System.out.println("----Welcome to signIn");
-
             GenericFunctions.enterValueInto(loginElement.login_userName, url.adminUserName());
             GenericFunctions.enterValueInto(loginElement.login_password, url.adminPassword());
             GenericFunctions.clickOn(loginElement.loginBtn);
@@ -65,6 +64,12 @@ public class AccopuntsTest {
             System.out.println("----Need to check issue in - signInTest - BeforeMethod - initialization----");
         }
     }
+    
+	@BeforeMethod
+	public void beforeEachMehod() throws Exception {
+		driver.get(url.adminURL());
+		GenericFunctions.pause(5);
+	}
 
     @AfterMethod
     public void endTestWork(ITestResult result) {
@@ -88,7 +93,7 @@ public class AccopuntsTest {
     }
 
    @Test(priority = 1)
-    public void verify_Required_Filled_functionality() throws Exception {
+    public void verify_available_fields_on_accounts_page() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
         GenericFunctions.pause(2);
@@ -108,9 +113,9 @@ public class AccopuntsTest {
     }
 
    @Test(priority = 2)
-    public void verify_Validation_Message_functionality() throws Exception {
-        GenericFunctions.pause(5);
-        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+    public void verify_required_fields_validation_on_accounts_page() throws Exception {
+//        GenericFunctions.pause(5);
+//        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
         GenericFunctions.pause(2);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
         GenericFunctions.pause(2);
@@ -130,9 +135,9 @@ public class AccopuntsTest {
     }
 
    @Test(priority = 3)
-    public void verify_Add_Message_functionality() throws Exception {
-        GenericFunctions.pause(5);
-        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+    public void verify_add_account_functionality() throws Exception {
+//        GenericFunctions.pause(5);
+//        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
         GenericFunctions.pause(2);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
         GenericFunctions.pause(2);
@@ -153,16 +158,16 @@ public class AccopuntsTest {
         GenericFunctions.jsClick(driver, accountsElements.save_Button_Two);
         GenericFunctions.pause(1);
         GenericFunctions.jsClick(driver, accountsElements.save_Button);
-        GenericFunctions.pause(6);
+        GenericFunctions.pause(10);
         WebElement accountName = driver.findElement(By.xpath("(//div[text()='Jignesh Company'])[1]"));
         GenericFunctions.elementIsDisplayd(accountName);
         System.out.println("----verify_Add_Message_functionality Test Completed");
     }
 
     @Test(priority = 4)
-    public void verify_Edit_Account_functionality() throws Exception {
-        GenericFunctions.pause(5);
-        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+    public void verify_edit_account_functionality() throws Exception {
+//        GenericFunctions.pause(5);
+//        GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
         GenericFunctions.pause(2);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
         GenericFunctions.pause(3);
@@ -173,13 +178,34 @@ public class AccopuntsTest {
         GenericFunctions.clearAndEnterValueInto(accountsElements.monthly_max_doors_textBox, "10000");
         GenericFunctions.jsClick(driver, accountsElements.save_Button);
         GenericFunctions.pause(6);
-        WebElement emailId = driver.findElement(By.xpath("(//div[text()='10000'])[1]"));
-        GenericFunctions.elementIsDisplayd(emailId);
+        WebElement monthly_max_doors = driver.findElement(By.xpath("(//div[text()='10000'])[1]"));
+        GenericFunctions.elementIsDisplayd(monthly_max_doors);
         System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
     }
+    
+	@Test(priority = 5)
+	public void verify_delete_account_functionality() throws Exception {
+//		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(accountsElements.checkBox);
+		GenericFunctions.pause(2);
+		GenericFunctions.clickOn(accountsElements.moreOption);
+		GenericFunctions.pause(1);
+		GenericFunctions.clickOn(accountsElements.delete_Button_From_More_Option);
+		GenericFunctions.pause(1);
+		GenericFunctions.clickOn(accountsElements.delete_Confirmation_Alert);
+		GenericFunctions.pause(1);
+		GenericFunctions.clickOn(accountsElements.delete_Button_On_Alert);
+		GenericFunctions.pause(1);
+		System.out.println("----verify_Delete_Sponsor_functionality Test Completed");
+	}
 
 
-   // @Test(priority = 4)
+   // @Test(priority = 6)
     public void verify_Notification() throws Exception {
         GenericFunctions.pause(2);
        // driver.switchTo().window(tabs2.get(1));
