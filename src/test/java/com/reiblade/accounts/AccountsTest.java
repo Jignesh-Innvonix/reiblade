@@ -26,7 +26,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class AccopuntsTest {
+public class AccountsTest {
     AccountsPage accountsPage;
     WebDriver driver;
     PropertiesFile url;
@@ -35,7 +35,7 @@ public class AccopuntsTest {
     AccountsElements accountsElements;
     DashboardElements dashboardElements;
 
-    public AccopuntsTest() throws Exception {
+    public AccountsTest() throws Exception {
         String userDirectory = System.getProperty("user.dir");
         url = new PropertiesFile(userDirectory + "//Data//url Configuration.properties");
 
@@ -90,7 +90,7 @@ public class AccopuntsTest {
         driver.quit();
     }
 
-  // @Test(priority = 1)
+  @Test(priority = 1)
     public void verify_Required_Filled_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.account_menu);
@@ -110,7 +110,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Required_Filled_functionality Test Completed");
     }
 
-   //@Test(priority = 2)
+   @Test(priority = 2)
     public void verify_Validation_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -132,7 +132,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Validation_Message_functionality Test Completed");
     }
 
-  // @Test(priority = 3)
+  @Test(priority = 3)
     public void verify_Add_Message_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -162,7 +162,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Add_Message_functionality Test Completed");
     }
 
-    //@Test(priority = 4)
+    @Test(priority = 4)
     public void verify_Edit_Account_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -181,7 +181,7 @@ public class AccopuntsTest {
         System.out.println("----verify_Edit_Sponsor_functionality Test Completed");
     }
 
-    //@Test(priority = 5)
+    @Test(priority = 5)
     public void verify_Delete_Account_functionality() throws Exception {
         GenericFunctions.pause(5);
         GenericFunctions.clickOn(leftMenuModulesElements.navigation_menu_icon);
@@ -207,7 +207,6 @@ public class AccopuntsTest {
    @Test(priority = 6)
     public void verify_Notification_And_Reset_Password() throws Exception {
         GenericFunctions.pause(2);
-       // driver.switchTo().window(tabs2.get(1));
         driver.get("https://yopmail.com/en/");
         GenericFunctions.pause(5);
         accountsPage.searchEmail("jigneshyopmail123@yopmail.com");
